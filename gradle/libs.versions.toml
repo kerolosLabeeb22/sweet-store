@@ -1,5 +1,5 @@
 [versions]
-accompanistPagerIndicators = "0.28.0"
+accompanistPagerIndicators = "0.24.9-beta"
 agp = "8.10.1"
 coilCompose = "2.7.0"
 constraintlayoutCompose = "1.1.1"

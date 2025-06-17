@@ -22,7 +22,7 @@ class MainRepository {
                 val lists = mutableListOf<SliderModel>()
                 for (childSnapshot in snapshot.children) {
                     val item = childSnapshot.getValue(SliderModel::class.java)
-                    item?.let {
+                    item?.let{
                         lists.add(it)
                     }
                 }
