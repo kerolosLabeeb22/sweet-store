@@ -1,5 +1,6 @@
 package com.example.online_shope.Repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.online_shope.domain.SliderModel
@@ -22,17 +23,22 @@ class MainRepository {
                 val lists = mutableListOf<SliderModel>()
                 for (childSnapshot in snapshot.children) {
                     val item = childSnapshot.getValue(SliderModel::class.java)
-                    item?.let{
+                    item?.let {
                         lists.add(it)
                     }
                 }
+                // update LiveData
+                listData.value = lists
+
+
+                Log.d("DEBUG_FIREBASE", "Fetched ${lists.size} banners from Firebase")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("DEBUG_FIREBASE", "Firebase load error: ${error.message}")
             }
-
         })
+
         return listData
     }
 }

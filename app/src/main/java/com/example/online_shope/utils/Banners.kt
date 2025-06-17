@@ -1,5 +1,6 @@
 package com.example.online_shope.utils
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Box
@@ -36,13 +37,14 @@ import androidx.compose.runtime.getValue
 @Composable
 fun Banners(banners: List<SliderModel>) {
     AutoSlidingCar(banners = banners)
+    Log.d("BANNERS", "Showing ${banners.size} items")
 
 }
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun AutoSlidingCar(
-    modifier: Modifier = Modifier.padding(16.dp),
+    modifier: Modifier = Modifier,
     pagerState: PagerState = remember { PagerState() },
     banners: List<SliderModel>
 ) {
@@ -62,15 +64,17 @@ fun AutoSlidingCar(
                     .padding(top = 16.dp, bottom = 8.dp)
                     .height(150.dp)
             )
-            DotIndicator(
-                modifier = modifier
-                    .padding(horizontal = 8.dp)
-                    .align(Alignment.CenterHorizontally),
-                totalDots = banners.size,
-                selectedIndex = if (isDragged) pagerState.currentPage else pagerState.currentPage,
-                dotSize = 8.dp
-            )
+
         }
+
+        DotIndicator(
+            modifier = modifier
+                .padding(horizontal = 1.dp)
+                .align(Alignment.CenterHorizontally),
+            totalDots = banners.size,
+            selectedIndex = if (isDragged) pagerState.currentPage else pagerState.currentPage,
+            dotSize = 8.dp
+        )
     }
 
 
