@@ -33,7 +33,9 @@ class MainActivity : ComponentActivity() {
                             SplashScreenContent(navHostController)
                         }
                         composable<HomeDestination>{
-                            HomeScreenContent(navHostController)
+                            HomeScreenContent(navHostController){
+
+                            }
                         }
                         composable<RegisterDestination>{
 

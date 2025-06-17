@@ -46,8 +46,7 @@ import com.example.online_shope.domain.ListItems
 import com.example.online_shope.utils.Banners
 
 @Composable
-@Preview
-fun HomeScreenContent(navController: NavHostController = rememberNavController()) {
+fun HomeScreenContent(navController: NavHostController = rememberNavController(),onCartClick: () -> Unit) {
 
 
     val viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
@@ -188,7 +187,7 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 24.dp)
+                        .padding(top = 36.dp)
                         .padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
@@ -209,18 +208,29 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
             }
 
             item {
-                if (showBestSellerLoading){
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp),
-                        contentAlignment = Alignment.Center){
+                if (showBestSellerLoading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
                         CircularProgressIndicator()
                     }
-                }else{
+                } else {
                     ListItems(bestSeller)
                 }
             }
         }
+
+        BottomMenu(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .constrainAs(bottomMenu) {
+                        bottom.linkTo(parent.bottom)
+                    },
+            onItemClick = onCartClick)
     }
 
 
