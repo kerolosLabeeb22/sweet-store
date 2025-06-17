@@ -38,9 +38,11 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.online_shope.Item.ItemModel
 import com.example.online_shope.R
 import com.example.online_shope.category.CategoryList
 import com.example.online_shope.category.CategoryModel
+import com.example.online_shope.domain.ListItems
 import com.example.online_shope.utils.Banners
 
 @Composable
@@ -51,9 +53,11 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
     val viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
     val banners = remember { mutableStateListOf<SliderModel>() }
     val categories = remember { mutableStateListOf<CategoryModel>() }
+    val bestSeller = remember { mutableStateListOf<ItemModel>() }
 
     var showBannerLoading by remember { mutableStateOf(true) }
     var showCategoryLoading by remember { mutableStateOf(true) }
+    var showBestSellerLoading by remember { mutableStateOf(true) }
 
 
     // Load banners
@@ -73,6 +77,15 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
             categories.clear()
             categories.addAll(it)
             showCategoryLoading = false
+        }
+    }
+
+    // load best seller
+    LaunchedEffect(Unit) {
+        viewModel.loadBestSeller().observeForever {
+            bestSeller.clear()
+            bestSeller.addAll(it)
+            showBestSellerLoading = false
         }
     }
 
@@ -192,6 +205,19 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
+                }
+            }
+
+            item {
+                if (showBestSellerLoading){
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp),
+                        contentAlignment = Alignment.Center){
+                        CircularProgressIndicator()
+                    }
+                }else{
+                    ListItems(bestSeller)
                 }
             }
         }
