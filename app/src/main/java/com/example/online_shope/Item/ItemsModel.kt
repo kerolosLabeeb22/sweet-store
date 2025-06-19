@@ -2,7 +2,7 @@ package com.example.online_shope.Item
 
 import java.io.Serializable
 
-data class ItemModel(
+data class ItemsModel(
     var title: String = "",
     var description: String = "",
     var picUrl: ArrayList<String> = ArrayList(),

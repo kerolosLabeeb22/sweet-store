@@ -1,6 +1,5 @@
 package com.example.online_shope.Activity
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,13 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.online_shope.Item.ItemModel
+import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.R
 import com.example.online_shope.category.CategoryList
 import com.example.online_shope.category.CategoryModel
@@ -52,7 +50,7 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
     val viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
     val banners = remember { mutableStateListOf<SliderModel>() }
     val categories = remember { mutableStateListOf<CategoryModel>() }
-    val bestSeller = remember { mutableStateListOf<ItemModel>() }
+    val bestSeller = remember { mutableStateListOf<ItemsModel>() }
 
     var showBannerLoading by remember { mutableStateOf(true) }
     var showCategoryLoading by remember { mutableStateOf(true) }
@@ -218,7 +216,7 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
                         CircularProgressIndicator()
                     }
                 } else {
-                    ListItems(bestSeller)
+                    ListItems(bestSeller,navController=navController)
                 }
             }
         }

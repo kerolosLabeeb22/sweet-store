@@ -11,8 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.online_shope.Activity.DetailsScreenCont
 import com.example.online_shope.Activity.HomeScreenContent
 import com.example.online_shope.Activity.SplashScreenContent
+import com.example.online_shope.destinaions.DetailsDestination
 import com.example.online_shope.destinaions.HomeDestination
 import com.example.online_shope.destinaions.RegisterDestination
 import com.example.online_shope.destinaions.SplashDestination
@@ -34,11 +36,14 @@ class MainActivity : ComponentActivity() {
                         }
                         composable<HomeDestination>{
                             HomeScreenContent(navHostController){
-
                             }
                         }
                         composable<RegisterDestination>{
 
+                        }
+
+                        composable<DetailsDestination>{
+                            //DetailsScreenCont(navHostController)
                         }
 
                     }
