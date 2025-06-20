@@ -1,5 +1,6 @@
-package com.example.online_shope.category
+package com.example.online_shope.Activity.Dashboard
 
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.compose.foundation.background
@@ -13,7 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,8 +31,9 @@ import com.example.online_shope.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-
-import java.util.Locale
+import androidx.core.content.ContextCompat.startActivity
+import com.example.online_shope.Activity.Dashboard.CategoryModel
+import com.example.online_shope.Activity.listItem.ListItemActivity
 
 @Composable
 fun CategoryList(categories: SnapshotStateList<CategoryModel>) {
@@ -49,7 +51,12 @@ fun CategoryList(categories: SnapshotStateList<CategoryModel>) {
                 onItemClick = {
                     selectedIndex = index
                     Handler(Looper.getMainLooper()).postDelayed({
+                        val intent= Intent(context, ListItemActivity::class.java).apply{
+                            putExtra("id",categories[index].id.toString())
+                            putExtra("title",categories[index].title)
 
+                        }
+                        startActivity(context,intent,null)
                     }, 500)
                 }
             )

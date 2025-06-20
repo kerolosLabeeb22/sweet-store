@@ -1,4 +1,4 @@
-package com.example.online_shope.Activity
+package com.example.online_shope.Activity.Dashboard
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -34,20 +34,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.R
-import com.example.online_shope.category.CategoryList
-import com.example.online_shope.category.CategoryModel
-import com.example.online_shope.domain.ListItems
 import com.example.online_shope.utils.Banners
 
 @Composable
 fun HomeScreenContent(navController: NavHostController = rememberNavController(),onCartClick: () -> Unit) {
 
 
-    val viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    val viewModel: MainViewModel = viewModel()
     val banners = remember { mutableStateListOf<SliderModel>() }
     val categories = remember { mutableStateListOf<CategoryModel>() }
     val bestSeller = remember { mutableStateListOf<ItemsModel>() }
@@ -228,7 +226,8 @@ fun HomeScreenContent(navController: NavHostController = rememberNavController()
                     .constrainAs(bottomMenu) {
                         bottom.linkTo(parent.bottom)
                     },
-            onItemClick = onCartClick)
+            onItemClick = onCartClick
+        )
     }
 
 

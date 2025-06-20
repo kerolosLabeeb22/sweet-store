@@ -40,7 +40,7 @@ public class ManagmentCart {
     }
 
     public ArrayList<ItemsModel> getListCart() {
-        return tinyDB.getListObject("CartList");
+        return tinyDB.getListObject("getCartList");
     }
 
     public void minusItem(ArrayList<ItemsModel> listItems, int position, ChangeNumberItemsListener listener) {

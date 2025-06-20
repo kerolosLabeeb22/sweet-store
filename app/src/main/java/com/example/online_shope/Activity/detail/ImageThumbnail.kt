@@ -1,4 +1,4 @@
-package com.example.online_shope.details
+package com.example.online_shope.Activity.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

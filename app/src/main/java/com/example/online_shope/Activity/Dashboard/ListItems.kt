@@ -1,4 +1,4 @@
-package com.example.online_shope.domain
+package com.example.online_shope.Activity.Dashboard
 
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
@@ -35,13 +37,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import com.example.online_shope.details.DetailsActivity
-import com.example.online_shope.Activity.DetailsScreenCont
+import com.example.online_shope.Activity.detail.DetailsActivity
 import com.example.online_shope.R
 import com.example.online_shope.destinaions.DetailsDestination
 
+@Composable
+fun ListItemsFullSizeVertical(item: List<ItemsModel>,navController: NavHostController,) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier.padding(horizontal = 8.dp , 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+
+    ) {
+        items(item.size){index:Int ->
+            BestSellerItem(navController = navController,item,index)
+        }
+    }
+
+}
 
 @Composable
 fun ListItems(item: List<ItemsModel>,navController: NavHostController,) {
@@ -75,7 +89,7 @@ fun BestSellerItem(navController: NavHostController,items: List<ItemsModel>, pos
                 .clip(RoundedCornerShape(10.dp))
                 .height(180.dp)
                 .clickable {
-                    navController.navigate(DetailsDestination)
+                    //navController.navigate(DetailsDestination)
 
                     val intent= Intent(context, DetailsActivity::class.java).apply {
                         putExtra("object", items[pos])

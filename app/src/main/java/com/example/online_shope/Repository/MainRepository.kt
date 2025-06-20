@@ -3,7 +3,7 @@ package com.example.online_shope.Repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.online_shope.category.CategoryModel
+import com.example.online_shope.Activity.Dashboard.CategoryModel
 import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.domain.SliderModel
 import com.google.firebase.database.DataSnapshot
@@ -101,6 +101,30 @@ class MainRepository {
             }
         })
 
+        return listData
+    }
+    fun loadFiltered(id: String): LiveData<MutableList<ItemsModel>> {
+        val listData = MutableLiveData<MutableList<ItemsModel>>()
+        val ref = firebaseDatabase.getReference("Items")
+        val query: Query = ref.orderByChild("categoryId").equalTo(id)
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists = mutableListOf<ItemsModel>()
+                for (childSnapshot in snapshot.children){
+                    val list= childSnapshot.getValue(ItemsModel::class.java)
+                    if (list!= null){
+                        lists.add(list)
+                    }
+                }
+                listData.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
         return listData
     }
 

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.online_shope.Repository.MainRepository
-import com.example.online_shope.category.CategoryModel
+import com.example.online_shope.Activity.Dashboard.CategoryModel
 import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.domain.SliderModel
 
@@ -23,5 +23,9 @@ class MainViewModel() : ViewModel() {
 
     fun loadBestSeller(): LiveData<MutableList<ItemsModel>> {
         return repository.loadBestSeller()
+    }
+
+    fun loadFiltered(id: String): LiveData<MutableList<ItemsModel>> {
+        return repository.loadFiltered(id)
     }
 }

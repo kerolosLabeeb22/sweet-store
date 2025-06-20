@@ -1,5 +1,6 @@
-package com.example.online_shope.details
+package com.example.online_shope.Activity.detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
 import com.example.online_shope.Helper.ManagmentCart
@@ -32,7 +34,7 @@ import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.unit.sp
+import com.example.online_shope.Activity.cart.CartActivity
 
 class DetailsActivity : AppCompatActivity() {
     private lateinit var item: ItemsModel
@@ -101,7 +103,7 @@ class DetailsActivity : AppCompatActivity() {
                 text = item.description,
                 fontSize = 14.sp,
                 color = colorResource(R.color.black),
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.Companion.padding(16.dp)
             )
 
             FooterSection(onAddCartClick, onCartClick)

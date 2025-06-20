@@ -1,4 +1,4 @@
-package com.example.online_shope.details
+package com.example.online_shope.Activity.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
 import com.example.online_shope.Item.ItemsModel
 import com.example.online_shope.R
 

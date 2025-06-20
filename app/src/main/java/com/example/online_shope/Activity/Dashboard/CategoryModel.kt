@@ -1,4 +1,4 @@
-package com.example.online_shope.category
+package com.example.online_shope.Activity.Dashboard
 
 data class CategoryModel(
     val title: String = "",
